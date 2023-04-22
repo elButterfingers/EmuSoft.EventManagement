@@ -36,7 +36,7 @@ jobs:
       uses: nuget/setup-nuget@v1
       with:
         nuget-api-key: ${{ secrets.NUGET_API_KEY }}
-        nuget-version: ${{ '1.0.0' }}
+        nuget-version: ${{ github.ref_name }}
         nuget-package: '*.nupkg'
         nuget-source: 'https://api.nuget.org/v3/index.json'
 
