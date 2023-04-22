@@ -36,9 +36,5 @@ jobs:
       run: echo "Hello"
 
     - name: Push NuGet package
-      uses: nuget/nuget-push@v1
-      with:
-        nuget-api-key: ${{ secrets.NUGET_API_KEY }}
-        nuget-package: '*.nupkg'
-        nuget-source: 'https://api.nuget.org/v3/index.json'
+      run: dotnet nuget push Path/To/Your/NuGetPackage.1.0.0.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
 
