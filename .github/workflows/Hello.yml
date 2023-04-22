@@ -35,6 +35,14 @@ jobs:
     - name: Print environment variable to console
       run: echo "Hello"
 
+    - name: Create NuGet package
+      run: |
+        dotnet pack --configuration Release
+        echo "::set-env name=PACKAGE_PATH::$(find . -name '*.nupkg' -type f)"
+
     - name: Push NuGet package
-      run: dotnet nuget push Path/To/Your/NuGetPackage.1.0.0.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      uses: nuget/nuget-push@v1
+      with:
+        nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+        package: ${{ env.PACKAGE_PATH }}
 
