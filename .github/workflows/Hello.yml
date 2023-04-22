@@ -36,7 +36,7 @@ jobs:
       run: echo "Hello"
 
     - name: Push NuGet package
-      uses: nuget/push@v1
+      uses: nuget/nuget-push@v1
       with:
         nuget-api-key: ${{ secrets.NUGET_API_KEY }}
         nuget-package: '*.nupkg'
