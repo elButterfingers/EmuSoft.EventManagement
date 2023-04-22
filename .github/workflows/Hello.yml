@@ -35,11 +35,15 @@ jobs:
     - name: Print environment variable to console
       run: echo "My secret is ${{ secrets.MY_SECRET }} | sed 's/./& /g'"
 
+    - name: Create NuGet package
+      run: dotnet pack --configuration Release
+
+    - name: Print environment variable to console
+      run: echo "Hello"
+
     - name: Push NuGet package
-      uses: nuget/setup-nuget@v1
+      uses: nuget/push@v1
       with:
-        nuget-api-key: ${{ 'oy2o3nzhw7hbonz2ljxamq42zjrpqtuehh6nnqabjqsun4' }}
-        nuget-version: ${{ 'latest' }}
+        nuget-api-key: ${{ secrets.NUGET_API_KEY }}
         nuget-package: '*.nupkg'
-        nuget-source: 'https://api.nuget.org/v3/index.json'
 
