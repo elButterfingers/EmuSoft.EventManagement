@@ -1,3 +1,8 @@
+to get the package added to your project
+dotnet add package EmuSoft.EventManagement --version 1.0.1
+
+
+
 1.	First, add the "EventManagement.InputManager" namespace to your project using the "using" statement:<br />
 <br />
 <code>using EventManagement.InputManager.ClientManager; </code><br />
@@ -71,6 +76,9 @@ Not Working with Windows Forms. We can also use this within a Console Applicatio
     }
     
 </code>
+<br />
+<br />
+we also have clientProvider.Keyboard to play with.
 <br />
 <br />
 Later releases will be to allow this library to integrate with lower versions of the dot net framework.
