@@ -40,4 +40,5 @@ jobs:
       with:
         nuget-api-key: ${{ secrets.NUGET_API_KEY }}
         nuget-package: '*.nupkg'
+        nuget-source: 'https://api.nuget.org/v3/index.json'
 
