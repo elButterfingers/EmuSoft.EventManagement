@@ -32,11 +32,10 @@ jobs:
     - name: Create NuGet package
       run: |
         dotnet pack --configuration Release
-        echo "::set-env name=PACKAGE_PATH::$(find . -name '*.nupkg' -type f)"
 
     - name: Print environment variable to console
       run: echo "Hello"
 
     - name: Push NuGet package
-      run: dotnet nuget push ${{ env.PACKAGE_PATH }} --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ./EventManagement/bin/Release/EmuSoft.EventManagement.1.0.1.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
 
