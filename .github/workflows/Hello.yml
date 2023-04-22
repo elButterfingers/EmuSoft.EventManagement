@@ -33,12 +33,6 @@ jobs:
       run: dotnet pack --configuration Release
 
     - name: Print environment variable to console
-      run: echo "My secret is ${{ secrets.MY_SECRET }} | sed 's/./& /g'"
-
-    - name: Create NuGet package
-      run: dotnet pack --configuration Release
-
-    - name: Print environment variable to console
       run: echo "Hello"
 
     - name: Push NuGet package
