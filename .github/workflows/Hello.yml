@@ -1,11 +1,40 @@
-name: Hello, world!
-
-on: [push]
+name: Update NuGet Package
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - master
+    # Only trigger the workflow if the pull request was merged, not just closed
+    # without merging
+    if: ${{ github.event.pull_request.merged == true }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Say hello
-      run: echo "Hello, world!"
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
+
+    - name: Restore NuGet packages
+      run: dotnet restore
+
+    - name: Build project
+      run: dotnet build --configuration Release
+
+    - name: Create NuGet package
+      run: dotnet pack --configuration Release
+
+    - name: Push NuGet package
+      uses: nuget/setup-nuget@v1
+      with:
+        nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+        nuget-version: ${{ github.ref_name }}
+        nuget-package: '*.nupkg'
+        nuget-source: 'https://api.nuget.org/v3/index.json'
+
