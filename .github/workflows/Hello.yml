@@ -33,13 +33,11 @@ jobs:
       run: dotnet pack --configuration Release
 
     - name: Print environment variable to console
-      run: echo "My secret is ${{ secrets.MY_SECRET }}"
+      run: echo "Hello"
 
     - name: Push NuGet package
-      uses: nuget/setup-nuget@v1
+      uses: nuget/push@v1
       with:
         nuget-api-key: ${{ secrets.NUGET_API_KEY }}
-        nuget-version: ${{ 'latest' }}
         nuget-package: '*.nupkg'
-        nuget-source: 'https://api.nuget.org/v3/index.json'
 
