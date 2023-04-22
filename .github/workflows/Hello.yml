@@ -6,11 +6,13 @@ on:
       - master
     # Only trigger the workflow if the pull request was merged, not just closed
     # without merging
-    if: ${{ github.event.pull_request.merged == true }}
+    
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    if: ${{ github.event.pull_request.merged == true }}
 
     steps:
     - name: Checkout code
